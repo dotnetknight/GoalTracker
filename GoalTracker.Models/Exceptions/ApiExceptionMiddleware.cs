@@ -31,7 +31,7 @@ namespace GoalTracker.Models.Exceptions
                 context.Response.StatusCode = (int)ex.StatusCode;
                 context.Response.ContentType = ex.ContentType;
 
-                await context.Response.WriteAsync(new ErrorDetails()
+                await context.Response.WriteAsync(new ExceptionErrorDetails()
                 {
                     StatusCode = ex.StatusCode,
                     Message = ex.Message

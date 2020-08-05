@@ -16,6 +16,7 @@ using AutoMapper;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using GoalTracker.Models.Exceptions;
+using GoalTracker.Web.Filters;
 
 namespace GoalTracker
 {
@@ -35,6 +36,7 @@ namespace GoalTracker
 
             services.AddMvc(op =>
             {
+                op.Filters.Add<ValidationFilter>();
             }).AddFluentValidation(fvc => fvc.RegisterValidatorsFromAssemblyContaining<Startup>());
 
             services.Configure<ApiBehaviorOptions>(options =>

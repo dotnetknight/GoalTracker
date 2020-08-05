@@ -3,7 +3,7 @@ using System.Net;
 
 namespace GoalTracker.Models.Models
 {
-    public class ErrorDetails
+    public class ExceptionErrorDetails
     {
         public HttpStatusCode StatusCode { get; set; }
         public string Message { get; set; }
