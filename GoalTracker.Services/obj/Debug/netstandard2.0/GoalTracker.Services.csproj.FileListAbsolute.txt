@@ -1,8 +1,15 @@
 C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Services\bin\Debug\netstandard2.0\GoalTracker.Services.deps.json
 C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Services\bin\Debug\netstandard2.0\GoalTracker.Services.dll
 C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Services\bin\Debug\netstandard2.0\GoalTracker.Services.pdb
-C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Services\obj\Debug\netstandard2.0\GoalTracker.Services.csprojAssemblyReference.cache
 C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Services\obj\Debug\netstandard2.0\GoalTracker.Services.AssemblyInfoInputs.cache
 C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Services\obj\Debug\netstandard2.0\GoalTracker.Services.AssemblyInfo.cs
 C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Services\obj\Debug\netstandard2.0\GoalTracker.Services.dll
 C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Services\obj\Debug\netstandard2.0\GoalTracker.Services.pdb
+C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Services\bin\Debug\netstandard2.0\GoalTracker.Domain.dll
+C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Services\bin\Debug\netstandard2.0\GoalTracker.Domain.pdb
+C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Services\obj\Debug\netstandard2.0\GoalTracker.Services.csprojAssemblyReference.cache
+C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Services\obj\Debug\netstandard2.0\GoalTracker.Services.csproj.CopyComplete
+C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Services\bin\Debug\netstandard2.0\GoalTracker.Models.dll
+C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Services\bin\Debug\netstandard2.0\GoalTracker.Repository.dll
+C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Services\bin\Debug\netstandard2.0\GoalTracker.Models.pdb
+C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Services\bin\Debug\netstandard2.0\GoalTracker.Repository.pdb
