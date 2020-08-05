@@ -20,6 +20,8 @@ namespace GoalTracker.Web.Handlers.CommandHandlers
 
         public async Task<Response> Handle(UserRegistrationCommand request, CancellationToken cancellationToken)
         {
+            _userService.TestMethod();
+
             User userEntity = new User
             {
                 AddedDate = DateTime.UtcNow,

@@ -15,6 +15,7 @@ using MediatR;
 using AutoMapper;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
+using GoalTracker.Models.Exceptions;
 
 namespace GoalTracker
 {
@@ -75,15 +76,16 @@ namespace GoalTracker
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseApiExceptionnMiddleware();
             }
             else
             {
-                app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
+                app.UseApiExceptionnMiddleware();
+                app.UseExceptionHandler();
             }
 
             app.UseHttpsRedirection();
@@ -94,6 +96,10 @@ namespace GoalTracker
             }
 
             app.UseRouting();
+
+            app.UseAuthentication();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

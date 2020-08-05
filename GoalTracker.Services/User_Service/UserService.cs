@@ -39,6 +39,12 @@ namespace GoalTracker.Services.User_Service
             return user;
         }
 
+        public string TestMethod()
+        {
+            throw new ApiException(System.Net.HttpStatusCode.NotFound, "User not found");
+
+        }
+
         public async Task<string> AuthenticationToken(string email, string password)
         {
             var userCredentials = await SingleUser(email);

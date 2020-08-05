@@ -11,5 +11,6 @@ namespace GoalTracker.Services.User_Service
         Task<User> SingleUser(string email);
         Task<string> AuthenticationToken(string email, string password);
         string PasswordHash(string password);
+        string TestMethod();
     }
 }
