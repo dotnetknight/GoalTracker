@@ -41,7 +41,7 @@ namespace GoalTracker.Services.User_Service
 
         public string TestMethod()
         {
-            throw new ApiException(System.Net.HttpStatusCode.NotFound, "User not found");
+            throw new ApiException(System.Net.HttpStatusCode.Unauthorized, "User is not authorized");
 
         }
 

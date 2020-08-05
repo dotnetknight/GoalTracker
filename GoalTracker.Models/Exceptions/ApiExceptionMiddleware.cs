@@ -1,6 +1,6 @@
-﻿using GoalTracker.Models.Models;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using System;
 using System.Threading.Tasks;
 
@@ -29,13 +29,17 @@ namespace GoalTracker.Models.Exceptions
                 }
 
                 context.Response.StatusCode = (int)ex.StatusCode;
-                context.Response.ContentType = ex.ContentType;
+                context.Response.ContentType = "application/json";
 
-                await context.Response.WriteAsync(new ExceptionErrorDetails()
+                var errorResponse = new
                 {
-                    StatusCode = ex.StatusCode,
-                    Message = ex.Message
-                }.ToString());
+                    statusCode = ex.StatusCode,
+                    message = ex.Message
+                };
+
+                var serializedErrorResponse = JsonConvert.SerializeObject(errorResponse);
+
+                await context.Response.WriteAsync(serializedErrorResponse);
 
                 return;
             }
