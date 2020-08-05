@@ -5,3 +5,7 @@ C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Repositor
 C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Repository\obj\Debug\netstandard2.0\GoalTracker.Repository.AssemblyInfo.cs
 C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Repository\obj\Debug\netstandard2.0\GoalTracker.Repository.dll
 C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Repository\obj\Debug\netstandard2.0\GoalTracker.Repository.pdb
+C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Repository\bin\Debug\netstandard2.0\GoalTracker.Domain.dll
+C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Repository\bin\Debug\netstandard2.0\GoalTracker.Domain.pdb
+C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Repository\obj\Debug\netstandard2.0\GoalTracker.Repository.csprojAssemblyReference.cache
+C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Repository\obj\Debug\netstandard2.0\GoalTracker.Repository.csproj.CopyComplete
