@@ -1,0 +1,8 @@
+C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Domain\bin\Debug\netstandard2.0\GoalTracker.Domain.deps.json
+C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Domain\bin\Debug\netstandard2.0\GoalTracker.Domain.dll
+C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Domain\obj\Debug\netstandard2.0\GoalTracker.Domain.csprojAssemblyReference.cache
+C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Domain\obj\Debug\netstandard2.0\GoalTracker.Domain.AssemblyInfoInputs.cache
+C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Domain\obj\Debug\netstandard2.0\GoalTracker.Domain.AssemblyInfo.cs
+C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Domain\bin\Debug\netstandard2.0\GoalTracker.Domain.pdb
+C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Domain\obj\Debug\netstandard2.0\GoalTracker.Domain.dll
+C:\Users\skott\Desktop\Projects\Core + Angular\GoalTracker\GoalTracker.Domain\obj\Debug\netstandard2.0\GoalTracker.Domain.pdb
