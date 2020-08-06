@@ -1,13 +1,13 @@
 <mat-nav-list fxShow>
-  <a *ngIf="!isAuth" [routerLinkActive]="['link-active']" mat-list-item routerLink="/login" (click)="close()">
+  <a *ngIf="!isAuth" [routerLinkActive]="['link-active']" mat-list-item routerLink="/user/login" (click)="close()">
     <mat-icon>android</mat-icon>
     <span>Login</span>
   </a>
-  <a *ngIf="!isAuth" [routerLinkActive]="['link-active']" mat-list-item routerLink="/signup" (click)="close()">
+  <a *ngIf="!isAuth" [routerLinkActive]="['link-active']" mat-list-item routerLink="/user/signup" (click)="close()">
     <mat-icon>fingerprint</mat-icon>
     <span>Signup</span>
   </a>
-  <a *ngIf="isAuth" [routerLinkActive]="['link-active']" mat-list-item routerLink="/myprofile" (click)="close()">
+  <a *ngIf="isAuth" [routerLinkActive]="['link-active']" mat-list-item routerLink="/user/myprofile" (click)="close()">
     <mat-icon>account_circle</mat-icon>
     <span>My Profile</span>
   </a>

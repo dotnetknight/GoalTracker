@@ -7,16 +7,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AutosizeModule } from 'ngx-autosize';
-import { SpinnerComponent } from './spinner/spinner.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavComponent } from './navigation/side-nav/side-nav.component';
+import { EmployeeModule } from './users/users.module';
+import { SharedModule } from './shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SpinnerComponent,
     HeaderComponent,
-    SidenavComponent,
+    SidenavComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +25,9 @@ import { SidenavComponent } from './navigation/side-nav/side-nav.component';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    AutosizeModule
+    AutosizeModule,
+    EmployeeModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
