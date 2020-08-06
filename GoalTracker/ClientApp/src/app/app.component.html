@@ -1,6 +1,15 @@
-<body>
-  <app-nav-menu></app-nav-menu>
-  <div class="container">
-    <router-outlet></router-outlet>
-  </div>
-</body>
+<app-header (sidenavToggle)="sideNav.toggle()"></app-header>
+
+<mat-sidenav-container class="container">
+  <mat-sidenav #sideNav class="sidenav" #sidenav [mode]="mode" [opened]="openSidenav">
+
+    <app-side-nav (sidenavToggle)="sideNav.toggle()"></app-side-nav>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

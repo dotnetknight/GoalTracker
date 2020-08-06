@@ -1,0 +1,22 @@
+<mat-nav-list fxShow>
+  <a *ngIf="!isAuth" [routerLinkActive]="['link-active']" mat-list-item routerLink="/login" (click)="close()">
+    <mat-icon>android</mat-icon>
+    <span>Login</span>
+  </a>
+  <a *ngIf="!isAuth" [routerLinkActive]="['link-active']" mat-list-item routerLink="/signup" (click)="close()">
+    <mat-icon>fingerprint</mat-icon>
+    <span>Signup</span>
+  </a>
+  <a *ngIf="isAuth" [routerLinkActive]="['link-active']" mat-list-item routerLink="/myprofile" (click)="close()">
+    <mat-icon>account_circle</mat-icon>
+    <span>My Profile</span>
+  </a>
+  <a *ngIf="!isAuth" [routerLinkActive]="['link-active']" mat-list-item routerLink="/vision" (click)="close()">
+    <mat-icon>visibility</mat-icon>
+    <span>Vision</span>
+  </a>
+  <a *ngIf="isAuth" mat-list-item (click)="onLogout()">
+    <mat-icon>eject</mat-icon>
+    <span>Logout</span>
+  </a>
+</mat-nav-list>
