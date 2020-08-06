@@ -1,16 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm, FormGroup, FormBuilder } from '@angular/forms';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { UserService } from '../user.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from "rxjs/operators";
+import { RoutingService } from 'src/app/_shared/services/routing.service';
+import { SnackBarService } from 'src/app/_shared/services/snackbar.service';
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent implements OnInit, OnDestroy {
   maxDate;
-  public isLoading = false;
+  private _unsubscribeAll: Subject<any>;
+  isLoading = false;
 
-  constructor() { }
+  constructor(private _userService: UserService,
+    private _snackBarService: SnackBarService,
+    private _routingService: RoutingService,) {
+    this._unsubscribeAll = new Subject();
+  }
 
   ngOnInit() {
     this.maxDate = new Date();
@@ -20,6 +30,21 @@ export class SignUpComponent implements OnInit {
   signUp(form: NgForm) {
     this.isLoading = true;
     console.log("REG FORM:", form.value);
+    this._userService.signUp(form.value)
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe(result => {
+        this._snackBarService.openSnackBar([result.message], 4000, 'center', 'center', 'success');
+        this._routingService.navigate('/login');
+      }, err => {
+        console.log(err);
+        this._snackBarService.openSnackBar(err.error.errors.map(element => element.message), 4000, 'center', 'center', 'error');
+      });
   }
+
+  ngOnDestroy(): void {
+    this._unsubscribeAll.next();
+    this._unsubscribeAll.complete();
+  }
+
 
 }

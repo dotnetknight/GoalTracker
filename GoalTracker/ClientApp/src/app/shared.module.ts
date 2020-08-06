@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './material.module';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { SnackBarService } from './_shared/services/snackbar.service';
+import { RoutingService } from './_shared/services/routing.service';
 
 
 @NgModule({
@@ -28,6 +30,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
         SpinnerComponent
     ],
     providers: [
+        SnackBarService,
+        RoutingService
     ]
 })
 export class SharedModule {

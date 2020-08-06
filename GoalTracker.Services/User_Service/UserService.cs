@@ -42,7 +42,6 @@ namespace GoalTracker.Services.User_Service
         public string TestMethod()
         {
             throw new ApiException(System.Net.HttpStatusCode.Unauthorized, "User is not authorized");
-
         }
 
         public async Task<string> AuthenticationToken(string email, string password)
@@ -75,7 +74,7 @@ namespace GoalTracker.Services.User_Service
             }
 
             else
-                    throw new ApiException(System.Net.HttpStatusCode.Unauthorized, "Wrong email or password provided");
+                throw new ApiException(System.Net.HttpStatusCode.Unauthorized, "Wrong email or password provided");
         }
 
         public string PasswordHash(string password)

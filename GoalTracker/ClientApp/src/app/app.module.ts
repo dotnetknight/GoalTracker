@@ -11,12 +11,15 @@ import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavComponent } from './navigation/side-nav/side-nav.component';
 import { EmployeeModule } from './users/users.module';
 import { SharedModule } from './shared.module';
+import { SnackbarMessageComponent } from './_shared/snackbar-message/snackbar-message.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SidenavComponent
+    SidenavComponent,
+    SnackbarMessageComponent
   ],
   imports: [
     BrowserModule,
@@ -27,9 +30,16 @@ import { SharedModule } from './shared.module';
     ReactiveFormsModule,
     AutosizeModule,
     EmployeeModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+
+  bootstrap: [AppComponent],
+
+  entryComponents: [
+    SnackbarMessageComponent,
+  ],
+
 })
 export class AppModule { }

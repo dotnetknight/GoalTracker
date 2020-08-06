@@ -17,7 +17,7 @@ namespace GoalTracker.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(UserRegistrationCommand command)
+        public async Task<IActionResult> SignUp(UserRegistrationCommand command)
         {
             return Ok(await _mediator.Send(command));
         }
