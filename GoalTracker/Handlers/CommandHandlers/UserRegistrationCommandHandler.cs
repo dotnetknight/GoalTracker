@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace GoalTracker.Web.Handlers.CommandHandlers
 {
-    public class RegisterUserCommandHandler : IRequestHandler<UserRegistrationCommand, Response>
+    public class RegisterUserCommandHandler : IRequestHandler<UserRegistrationCommand, UserRegistrationResponse>
     {
         private IUserService _userService;
 
@@ -18,10 +18,8 @@ namespace GoalTracker.Web.Handlers.CommandHandlers
             _userService = userService;
         }
 
-        public async Task<Response> Handle(UserRegistrationCommand request, CancellationToken cancellationToken)
+        public async Task<UserRegistrationResponse> Handle(UserRegistrationCommand request, CancellationToken cancellationToken)
         {
-            _userService.TestMethod();
-
             User userEntity = new User
             {
                 AddedDate = DateTime.UtcNow,
@@ -31,9 +29,9 @@ namespace GoalTracker.Web.Handlers.CommandHandlers
                 Password = _userService.PasswordHash(request.Password)
             };
 
-            await _userService.RegisterUser(userEntity);
+            await _userService.SignUp(userEntity);
 
-            return new Response
+            return new UserRegistrationResponse
             {
                 Message = "You have successfully created an account"
             };

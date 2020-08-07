@@ -28,7 +28,7 @@ namespace GoalTracker.Services.User_Service
             return userRepository.GetAll();
         }
 
-        public async Task RegisterUser(User user)
+        public async Task SignUp(User user)
         {
             await userRepository.Insert(user);
         }
@@ -39,17 +39,12 @@ namespace GoalTracker.Services.User_Service
             return user;
         }
 
-        public string TestMethod()
-        {
-            throw new ApiException(System.Net.HttpStatusCode.Unauthorized, "User is not authorized");
-        }
-
         public async Task<string> AuthenticationToken(string email, string password)
         {
             var userCredentials = await SingleUser(email);
 
             if (userCredentials == null)
-                throw new ApiException(System.Net.HttpStatusCode.NotFound, "User not found");
+                throw new BaseApiException(System.Net.HttpStatusCode.NotFound, "User not found");
 
             if (userCredentials.Password == PasswordHash(password))
             {
@@ -74,7 +69,7 @@ namespace GoalTracker.Services.User_Service
             }
 
             else
-                throw new ApiException(System.Net.HttpStatusCode.Unauthorized, "Wrong email or password provided");
+                throw new BaseApiException(System.Net.HttpStatusCode.Unauthorized, "Wrong email or password provided");
         }
 
         public string PasswordHash(string password)

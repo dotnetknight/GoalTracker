@@ -7,10 +7,9 @@ namespace GoalTracker.Services.User_Service
     public interface IUserService
     {
         IEnumerable<User> GetUsers();
-        Task RegisterUser(User user);
+        Task SignUp(User user);
         Task<User> SingleUser(string email);
         Task<string> AuthenticationToken(string email, string password);
         string PasswordHash(string password);
-        string TestMethod();
     }
 }

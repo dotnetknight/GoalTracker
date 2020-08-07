@@ -29,12 +29,11 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
   signUp(form: NgForm) {
     this.isLoading = true;
-    console.log("REG FORM:", form.value);
     this._userService.signUp(form.value)
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe(result => {
         this._snackBarService.openSnackBar([result.message], 4000, 'center', 'center', 'success');
-        this._routingService.navigate('/login');
+        this._routingService.navigate('/user/login');
       }, err => {
         console.log(err);
         this._snackBarService.openSnackBar(err.error.errors.map(element => element.message), 4000, 'center', 'center', 'error');

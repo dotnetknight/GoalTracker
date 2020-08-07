@@ -1,6 +1,6 @@
 ﻿namespace GoalTracker.Models.Responses
 {
-    public class UserRegistrationResponse : Response
+    public class UserRegistrationResponse : BaseResponse
     {
     }
 }

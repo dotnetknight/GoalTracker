@@ -37,6 +37,7 @@ namespace GoalTracker
             services.AddMvc(op =>
             {
                 op.Filters.Add<ValidationFilter>();
+                op.Filters.Add<ApiExceptionAttributeAttribute>();
             }).AddFluentValidation(fvc => fvc.RegisterValidatorsFromAssemblyContaining<Startup>());
 
             services.Configure<ApiBehaviorOptions>(options =>
@@ -82,11 +83,9 @@ namespace GoalTracker
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseApiExceptionnMiddleware();
             }
             else
             {
-                app.UseApiExceptionnMiddleware();
                 app.UseExceptionHandler();
             }
 

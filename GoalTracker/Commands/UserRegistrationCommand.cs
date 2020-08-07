@@ -3,7 +3,7 @@ using MediatR;
 
 namespace GoalTracker.Web.Commands
 {
-    public class UserRegistrationCommand : IRequest<Response>
+    public class UserRegistrationCommand : IRequest<UserRegistrationResponse>
     {
         public string Email { get; set; }
         public string FirstName { get; set; }

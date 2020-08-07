@@ -1,6 +1,6 @@
 <app-spinner *ngIf="isLoading"></app-spinner>
 
-<section fxLayoutAlign="center center">
+<section fxLayoutAlign="center center" *ngIf="!isLoading">
     <mat-card id="SignUpForm">
         <mat-card-title fxLayoutAlign="center">Sign up!</mat-card-title>
         <Br>
