@@ -1,5 +1,5 @@
-import { SuccessResponse } from 'src/app/_shared/responses/success.response';
+import { BaseResponse } from 'src/app/_shared/responses/baseResponse';
 
-export interface SignUpResponse extends SuccessResponse {
+export interface SignUpResponse extends BaseResponse {
 
 }

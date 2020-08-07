@@ -1,4 +1,4 @@
-<app-spinner *ngIf="isLoading"></app-spinner>
+<!-- <app-spinner *ngIf="isLoading"></app-spinner>
 
 <section fxLayoutAlign="center center" *ngIf="!isLoading">
     <mat-card id="LoginForm">
@@ -21,6 +21,126 @@
                 </mat-form-field>
                 <button type="submit" mat-raised-button color="accent" [disabled]="f.invalid">Submit</button>
             </form>
+        </mat-card-content>
+    </mat-card>
+</section> -->
+
+<!-- 
+
+<section fxLayoutAlign="center center" *ngIf="!isLoading">
+    <mat-card id="LoginForm">
+        <mat-card-title fxLayoutAlign="center">Login</mat-card-title>
+        <Br>
+        <mat-card-subtitle fxLayoutAlign="center">Be your own HERO.</mat-card-subtitle>
+        <mat-card-content fxLayoutAlign="center">
+
+            <form name="loginForm" [formGroup]="loginForm" fxLayout="column" fxLayoutAlign="center center"
+                fxLayoutAlign.xs="center center" fxLayoutGap="10px">
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email">
+                    <mat-icon matSuffix class="secondary-text">mail</mat-icon>
+                    <mat-error *ngIf="loginForm.get('email').hasError('required')">
+                        Email is required
+                    </mat-error>
+                    <mat-error *ngIf="!loginForm.get('email').hasError('required') &&
+                          loginForm.get('email').hasError('email')">
+                        Please enter a valid email address
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" formControlName="password">
+                    <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
+                    <mat-error>
+                        Password is required
+                    </mat-error>
+                </mat-form-field>
+
+                <div class="remember-forgot-password" fxLayout="row" fxLayout.xs="column"
+                    fxLayoutAlign="space-between center">
+                    <mat-checkbox class="remember-me" aria-label="Remember Me">
+                        Remember Me
+                    </mat-checkbox>
+
+                    <a class="forgot-password" [routerLink]="'/pages/auth/forgot-password-2'">
+                        Forgot Password?
+                    </a>
+                </div>
+
+                <button (click)="login()" mat-raised-button color="accent" class="submit-button" aria-label="LOGIN"
+                    [disabled]="loginForm.invalid">
+                    LOGIN
+                </button>
+
+            </form>
+
+            <div class="register" fxLayout="column" fxLayoutAlign="center center">
+                <span class="text">Don't have an account?</span>
+                <a class="link" [routerLink]="'/user/register'">Create an account</a>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</section> -->
+
+
+
+<app-spinner *ngIf="isLoading"></app-spinner>
+
+<section fxLayoutAlign="center center" *ngIf="!isLoading">
+    <mat-card id="LoginForm">
+        <mat-card-title fxLayoutAlign="center">Login</mat-card-title>
+
+        <br>
+
+        <mat-card-subtitle fxLayoutAlign="center">Be your own HERO.</mat-card-subtitle>
+        <mat-card-content fxLayoutAlign="center">
+
+            <form name="loginForm" [formGroup]="loginForm" fxLayout="column" fxLayoutAlign="center center"
+                fxLayoutAlign.xs="center center" fxLayoutGap="10px">
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" required>
+                    <mat-icon matSuffix class="secondary-text">mail</mat-icon>
+                    <mat-error *ngIf="loginForm.get('email').hasError('required')">
+                        Email is required
+                    </mat-error>
+                    <mat-error *ngIf="!loginForm.get('email').hasError('required') &&
+                          loginForm.get('email').hasError('email')">
+                        Please enter a valid email address
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" formControlName="password" required>
+                    <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
+                    <mat-error>
+                        Password is required
+                    </mat-error>
+                </mat-form-field>
+
+
+                <button (click)="login()" mat-raised-button color="accent" class="submit-button" aria-label="LOGIN"
+                    [disabled]="loginForm.invalid">
+                    LOGIN
+                </button>
+
+                <!-- 
+                <a class="forgot-password" [routerLink]="'/pages/auth/forgot-password-2'">
+                    Forgot Password?
+                </a> -->
+
+                <div class="register" fxLayout="column" fxLayoutAlign="center center">
+                    <span class="text">Don't have an account?</span>
+                    <a class="link" color="accent" [routerLink]="'/user/signup'">Create</a>
+                </div>
+
+            </form>
+
         </mat-card-content>
     </mat-card>
 </section>

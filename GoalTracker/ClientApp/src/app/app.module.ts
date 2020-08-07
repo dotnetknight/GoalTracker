@@ -13,6 +13,7 @@ import { EmployeeModule } from './users/users.module';
 import { SharedModule } from './shared.module';
 import { SnackbarMessageComponent } from './_shared/snackbar-message/snackbar-message.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TrackerModule } from './tracker/tracker.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { HttpClientModule } from '@angular/common/http';
     AutosizeModule,
     EmployeeModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    TrackerModule
   ],
   providers: [],
 

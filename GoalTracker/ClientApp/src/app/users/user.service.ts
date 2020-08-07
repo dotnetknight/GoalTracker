@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SignUpResponse } from './responses/sign-up.response';
@@ -15,6 +15,14 @@ export class UserService {
 
     signUp(signUpForm): Observable<SignUpResponse> {
         return this.httpClient.post<SignUpResponse>('api/Users/SignUp', signUpForm);
+    }
+
+    checkUserExistence(email: string): Observable<boolean> {
+        let params = new HttpParams();
+        params = params.append('email', email);
+        return this.httpClient.get<boolean>('api/Users/UserByEmail', {
+            params: params
+        });
     }
 
     getToken() {

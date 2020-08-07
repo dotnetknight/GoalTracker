@@ -8,7 +8,7 @@ namespace GoalTracker.Services.User_Service
     {
         IEnumerable<User> GetUsers();
         Task SignUp(User user);
-        Task<User> SingleUser(string email);
+        Task<User> UserCredentialsByEmail(string email);
         Task<string> AuthenticationToken(string email, string password);
         string PasswordHash(string password);
     }

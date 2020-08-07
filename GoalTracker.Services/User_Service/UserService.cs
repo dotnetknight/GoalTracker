@@ -33,22 +33,18 @@ namespace GoalTracker.Services.User_Service
             await userRepository.Insert(user);
         }
 
-        public async Task<User> SingleUser(string email)
+        public async Task<User> UserCredentialsByEmail(string email)
         {
-            var user = await userRepository.Get(email);
-            return user;
+            return await userRepository.Get(email);
         }
 
         public async Task<string> AuthenticationToken(string email, string password)
         {
-            var userCredentials = await SingleUser(email);
+            var userCredentials = await UserCredentialsByEmail(email);
 
-            if (userCredentials == null)
-                throw new BaseApiException(System.Net.HttpStatusCode.NotFound, "User not found");
+            UserCredentialValidations(password, userCredentials);
 
-            if (userCredentials.Password == PasswordHash(password))
-            {
-                var claims = new[] {
+            var claims = new[] {
                     new Claim(JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
@@ -56,19 +52,24 @@ namespace GoalTracker.Services.User_Service
                     new Claim("full_name", userCredentials.FirstName + " " + userCredentials.LastName)
                    };
 
-                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
-                var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-                var token = new JwtSecurityToken(
-                    _configuration["Jwt:Issuer"],
-                    _configuration["Jwt:Audience"],
-                    claims,
-                    expires: DateTime.UtcNow.AddDays(90),
-                    signingCredentials: signIn);
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+            var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var token = new JwtSecurityToken(
+                _configuration["Jwt:Issuer"],
+                _configuration["Jwt:Audience"],
+                claims,
+                expires: DateTime.UtcNow.AddDays(90),
+                signingCredentials: signIn);
 
-                return new JwtSecurityTokenHandler().WriteToken(token);
-            }
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
 
-            else
+        private void UserCredentialValidations(string passwordProvided, User user)
+        {
+            if (user == null)
+                throw new BaseApiException(System.Net.HttpStatusCode.NotFound, "User not found");
+
+            if (user.Password != PasswordHash(passwordProvided))
                 throw new BaseApiException(System.Net.HttpStatusCode.Unauthorized, "Wrong email or password provided");
         }
 
@@ -80,8 +81,7 @@ namespace GoalTracker.Services.User_Service
             using (var algorithm = new System.Security.Cryptography.SHA512Managed())
                 hashBytes = algorithm.ComputeHash(bytes);
 
-            string hash = Convert.ToBase64String(hashBytes);
-            return hash;
+            return Convert.ToBase64String(hashBytes);
         }
     }
 }

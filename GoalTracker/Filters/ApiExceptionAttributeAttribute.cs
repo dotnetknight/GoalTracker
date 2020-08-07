@@ -12,7 +12,7 @@ namespace GoalTracker.Web.Filters
             var baseException = context.Exception.GetBaseException();
 
             int statusCode = StatusCodes.Status500InternalServerError;
-            string statusMessage = "დაფიქსირდა სისტემური შეცდომა";
+            string statusMessage = "Internal server error occurred";
 
             BaseApiException baseApiException = null;
             if (baseException is BaseApiException)
@@ -27,7 +27,7 @@ namespace GoalTracker.Web.Filters
             context.Result = new JsonResult(new
             {
                 statusCode = statusCode,
-                error = statusMessage,
+                message = statusMessage,
             });
 
             base.OnException(context);

@@ -1,3 +1,3 @@
-import { SuccessResponse } from 'src/app/_shared/responses/success.response';
+import { BaseResponse } from 'src/app/_shared/responses/baseResponse';
 
-export interface LoginResponse extends SuccessResponse { }
+export interface LoginResponse extends BaseResponse { }
