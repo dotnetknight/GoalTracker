@@ -12,22 +12,21 @@ namespace GoalTracker.Web.Filters
             var baseException = context.Exception.GetBaseException();
 
             int statusCode = StatusCodes.Status500InternalServerError;
-            string statusMessage = "Internal server error occurred";
+            string message = "Internal server error occurred";
 
-            BaseApiException baseApiException = null;
             if (baseException is BaseApiException)
             {
-                baseApiException = ((BaseApiException)baseException);
+                BaseApiException baseApiException = ((BaseApiException)baseException);
                 statusCode = baseApiException.ResponseHttpStatusCode;
-                statusMessage = baseApiException.BackEndMessage;
+                message = baseApiException.BackEndMessage;
             }
 
             context.HttpContext.Response.StatusCode = statusCode;
 
             context.Result = new JsonResult(new
             {
-                statusCode = statusCode,
-                message = statusMessage,
+                statusCode,
+                message
             });
 
             base.OnException(context);
