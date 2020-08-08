@@ -37,9 +37,10 @@ export class LoginComponent implements OnInit, OnDestroy {
       .subscribe(res => {
         let token = (<any>res).token;
         localStorage.setItem("jwt", token);
+        this._userService.chaseUserAuthenticationState(true);
 
         this._snackBarService.openSnackBar([res.message], 4000, 'center', 'center', 'success');
-        this._routingService.navigate('/tracker/dailyTasks');
+        this._routingService.navigate('/tracker/dailytasks');
       }, err => {
         if (err.error.errors != undefined) {
           this._snackBarService

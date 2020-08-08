@@ -7,4 +7,10 @@
   <div fxLayoutAlign="flex-start">
     <a routerLink="/">Goal Tracker</a>
   </div>
+
+  <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+    <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+      <a *ngIf="isAuth" routerLink="/user/profile">Hi, Nika!</a>
+    </ul>
+  </div>
 </mat-toolbar>

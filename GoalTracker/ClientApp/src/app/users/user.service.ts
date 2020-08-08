@@ -1,11 +1,15 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject, Subject } from 'rxjs';
 import { SignUpResponse } from './responses/sign-up.response';
 import { LoginResponse } from './responses/login.response';
 
 @Injectable()
 export class UserService {
+    private isAuth: boolean = false;
+
+    isAuthSubject = new Subject<boolean>();
+
     constructor(
         private httpClient: HttpClient) { }
 
@@ -23,6 +27,14 @@ export class UserService {
         return this.httpClient.get<boolean>('api/Users/UserByEmail', {
             params: params
         });
+    }
+
+    chaseUserAuthenticationState(isAuth: boolean) {
+        this.isAuthSubject.next(isAuth);
+    }
+
+    isUserAuthenticated(): Observable<boolean> {
+        return this.isAuthSubject.asObservable();
     }
 
     getToken() {
