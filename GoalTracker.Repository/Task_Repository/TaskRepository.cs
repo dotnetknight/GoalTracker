@@ -1,11 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using GoalTracker.Domain.DailyTasks;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using Task = System.Threading.Tasks.Task;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace GoalTracker.Repository.Task_Repository
 {
-    public class TaskRepository<T> : ITaskRepository<T> where T : Domain.Task.Task
+    public class TaskRepository<T> : ITaskRepository<T> where T : DailyTasks
     {
         private readonly ApplicationContext context;
         private DbSet<T> entities;
@@ -24,6 +26,12 @@ namespace GoalTracker.Repository.Task_Repository
         public IEnumerable<T> GetAll()
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<DailyTasks>> DailyTasksByEmail(string email)
+        {
+            var res = await entities.ToListAsync();
+            return res.Where(h => h.Owner == email);
         }
 
         public async Task Insert(T entity)

@@ -1,4 +1,4 @@
-﻿using GoalTracker.Domain.Task;
+﻿using GoalTracker.Domain.DailyTasks;
 using GoalTracker.Domain.User;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,7 +13,7 @@ namespace GoalTracker.Repository
         {
             base.OnModelCreating(modelBuilder);
             new UserMapper(modelBuilder.Entity<User>());
-            new TaskMapper(modelBuilder.Entity<Task>());
+            new DailyTasksMapper(modelBuilder.Entity<DailyTasks>());
         }
     }
 }

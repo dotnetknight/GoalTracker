@@ -3,6 +3,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatSort } from '@angular/material/sort';
 import { RoutingService } from 'src/app/_shared/services/routing.service';
+import { TrackerService } from '../tracker.service';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { SnackBarService } from 'src/app/_shared/services/snackbar.service';
+import { TasksPerUserRespone, Task } from '../responses/tasks-per-user.response';
 
 export interface PeriodicElement {
   name: string;
@@ -25,19 +30,48 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./daily-task.component.scss']
 })
 export class DailyTaskComponent implements OnInit {
-  displayedColumns: string[] = ['select', 'name', 'time', 'priority'];
-  dataSource: MatTableDataSource<PeriodicElement>;
+  displayedColumns: string[] = ['select', 'title', 'time', 'priority'];
+  dataSource: MatTableDataSource<Task>;
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  selection = new SelectionModel<PeriodicElement>(true, []);
+  selection = new SelectionModel<TasksPerUserRespone>(true, []);
+
+  private _unsubscribeAll: Subject<any>;
+  isLoading: boolean = true;
 
 
-  constructor(private _routingService: RoutingService) {
-    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+  constructor(
+    private _routingService: RoutingService,
+    private _trackerService: TrackerService,
+    private _snackBarService: SnackBarService) {
+    // this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+    this._unsubscribeAll = new Subject();
   }
 
   ngOnInit() {
-    this.dataSource.sort = this.sort;
+    this._trackerService
+      .dailyTasks()
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe(result => {
+        console.log("RESULT", result);
+
+        this.dataSource = new MatTableDataSource(result.dailyTasks);
+        this.dataSource.sort = this.sort;
+        this.isLoading = false;
+
+      }, err => {
+        if (err.error.errors != undefined) {
+          this._snackBarService
+            .openSnackBar(err.error.errors
+              .map(element => element.message), 4000, 'center', 'center', 'error');
+        }
+
+        else {
+          this._snackBarService
+            .openSnackBar([err.error.message], 4000, 'center', 'center', 'error');
+        }
+      });
+
   }
 
   isAllSelected() {
@@ -49,9 +83,8 @@ export class DailyTaskComponent implements OnInit {
   masterToggle() {
     this.isAllSelected() ?
       this.selection.clear() :
-      this.dataSource.data.forEach(row => this.selection.select(row));
+      this.dataSource.data.forEach(row => this.selection.select());
   }
-
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

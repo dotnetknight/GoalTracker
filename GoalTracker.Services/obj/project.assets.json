@@ -1786,6 +1786,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "GoalTracker.Domain": "1.0.0",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Newtonsoft.Json": "12.0.3"
         },
@@ -6501,7 +6502,6 @@
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
-      "GoalTracker.Domain >= 1.0.0",
       "GoalTracker.Models >= 1.0.0",
       "GoalTracker.Repository >= 1.0.0",
       "NETStandard.Library >= 2.0.3",
@@ -6538,9 +6538,6 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "C:\\Users\\skott\\Desktop\\Projects\\Core + Angular\\GoalTracker\\GoalTracker.Domain\\GoalTracker.Domain.csproj": {
-              "projectPath": "C:\\Users\\skott\\Desktop\\Projects\\Core + Angular\\GoalTracker\\GoalTracker.Domain\\GoalTracker.Domain.csproj"
-            },
             "C:\\Users\\skott\\Desktop\\Projects\\Core + Angular\\GoalTracker\\GoalTracker.Models\\GoalTracker.Models.csproj": {
               "projectPath": "C:\\Users\\skott\\Desktop\\Projects\\Core + Angular\\GoalTracker\\GoalTracker.Models\\GoalTracker.Models.csproj"
             },

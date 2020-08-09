@@ -1,22 +1,30 @@
-﻿using GoalTracker.Repository.Task_Repository;
+﻿using GoalTracker.Domain.DailyTasks;
+using GoalTracker.Repository.Task_Repository;
 using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GoalTracker.Services.Task_service
 {
     public class TaskService : ITaskService
     {
-        private readonly ITaskRepository<Domain.Task.Task> taskRepository;
+        private readonly ITaskRepository<DailyTasks> _taskRepository;
         public IConfiguration _configuration;
 
-        public TaskService(ITaskRepository<Domain.Task.Task> taskRepository, IConfiguration configuration)
+        public TaskService(ITaskRepository<DailyTasks> taskRepository, IConfiguration configuration)
         {
-            this.taskRepository = taskRepository;
+            _taskRepository = taskRepository;
             _configuration = configuration;
         }
 
-        public async System.Threading.Tasks.Task AddTask(Domain.Task.Task taskEntity)
+        public async Task AddTask(DailyTasks dailyTasks)
         {
-            await taskRepository.Insert(taskEntity);
+            await _taskRepository.Insert(dailyTasks);
+        }
+
+        public async Task<IEnumerable<DailyTasks>> DailyTasks(string email)
+        {
+            return await _taskRepository.DailyTasksByEmail(email);
         }
     }
 }

@@ -12,9 +12,10 @@ import { SidenavComponent } from './navigation/side-nav/side-nav.component';
 import { EmployeeModule } from './users/users.module';
 import { SharedModule } from './shared.module';
 import { SnackbarMessageComponent } from './_shared/snackbar-message/snackbar-message.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TrackerModule } from './tracker/tracker.module';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { JwtInterceptor } from './_shared/interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,9 @@ import { WelcomeComponent } from './welcome/welcome.component';
     HttpClientModule,
     TrackerModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
 
   bootstrap: [AppComponent],
 

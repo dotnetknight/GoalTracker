@@ -1,16 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace GoalTracker.Domain.Task
+namespace GoalTracker.Domain.DailyTasks
 {
-    public class TaskMapper
+    public class DailyTasksMapper
     {
-        public TaskMapper(EntityTypeBuilder<Task> entityBuilder)
+        public DailyTasksMapper(EntityTypeBuilder<DailyTasks> entityBuilder)
         {
             entityBuilder.HasKey(t => t.Id);
             entityBuilder.Property(t => t.Priority).IsRequired();
             entityBuilder.Property(t => t.Title).IsRequired();
             entityBuilder.Property(t => t.TaskEndTime).IsRequired();
             entityBuilder.Property(t => t.TaskStartTime).IsRequired();
+            entityBuilder.Property(t => t.Owner).IsRequired();
         }
     }
 }
