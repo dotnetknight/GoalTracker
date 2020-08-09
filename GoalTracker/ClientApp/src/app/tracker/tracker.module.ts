@@ -3,6 +3,7 @@ import { SharedModule } from '../shared.module';
 import { DailyTaskComponent } from './daily-task/daily-task.component';
 import { TrackerRoutingModule } from './tracker-routing.module';
 import { AddTaskComponent } from './add-task/add-task.component';
+import { TrackerService } from './tracker.service';
 
 @NgModule({
     declarations: [
@@ -16,7 +17,7 @@ import { AddTaskComponent } from './add-task/add-task.component';
 
     ],
     providers: [
-
+        TrackerService
     ],
     entryComponents: [
     ]

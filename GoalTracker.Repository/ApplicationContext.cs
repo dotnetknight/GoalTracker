@@ -1,4 +1,5 @@
-﻿using GoalTracker.Domain.User;
+﻿using GoalTracker.Domain.Task;
+using GoalTracker.Domain.User;
 using Microsoft.EntityFrameworkCore;
 
 namespace GoalTracker.Repository
@@ -11,7 +12,8 @@ namespace GoalTracker.Repository
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            new UserMap(modelBuilder.Entity<User>());
+            new UserMapper(modelBuilder.Entity<User>());
+            new TaskMapper(modelBuilder.Entity<Task>());
         }
     }
 }

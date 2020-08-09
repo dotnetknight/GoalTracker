@@ -17,6 +17,8 @@ using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using GoalTracker.Models.Exceptions;
 using GoalTracker.Web.Filters;
+using GoalTracker.Repository.Task_Repository;
+using GoalTracker.Services.Task_service;
 
 namespace GoalTracker
 {
@@ -46,9 +48,12 @@ namespace GoalTracker
             });
 
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddScoped(typeof(IUserRepository<>), typeof(UserRepository<>));
+            services.AddScoped(typeof(ITaskRepository<>), typeof(TaskRepository<>));
 
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<ITaskService, TaskService>();
 
             services.AddMediatR(typeof(Startup));
 

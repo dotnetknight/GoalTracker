@@ -2,9 +2,9 @@
 
 namespace GoalTracker.Domain.User
 {
-    public class UserMap
+    public class UserMapper
     {
-        public UserMap(EntityTypeBuilder<User> entityBuilder)
+        public UserMapper(EntityTypeBuilder<User> entityBuilder)
         {
             entityBuilder.HasKey(t => t.Id);
             entityBuilder.Property(t => t.Email).IsRequired();
