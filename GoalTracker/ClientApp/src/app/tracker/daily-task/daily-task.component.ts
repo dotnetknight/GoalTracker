@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatSort } from '@angular/material/sort';
+import { RoutingService } from 'src/app/_shared/services/routing.service';
 
 export interface PeriodicElement {
   name: string;
@@ -31,7 +32,7 @@ export class DailyTaskComponent implements OnInit {
   selection = new SelectionModel<PeriodicElement>(true, []);
 
 
-  constructor() {
+  constructor(private _routingService: RoutingService) {
     this.dataSource = new MatTableDataSource(ELEMENT_DATA);
   }
 
@@ -59,5 +60,9 @@ export class DailyTaskComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  addTask() {
+    this._routingService.navigate("tracker/addtask");
   }
 }

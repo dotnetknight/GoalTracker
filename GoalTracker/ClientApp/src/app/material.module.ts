@@ -22,6 +22,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
+import { AmazingTimePickerModule } from 'amazing-time-picker';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { MatCardModule } from '@angular/material/card';
         MatRadioModule,
         MatExpansionModule,
         MatTableModule,
+        AmazingTimePickerModule
     ],
     exports: [
         MatButtonModule,
@@ -72,6 +74,7 @@ import { MatCardModule } from '@angular/material/card';
         MatRadioModule,
         MatExpansionModule,
         MatTableModule,
+        AmazingTimePickerModule
     ],
 })
 export class MaterialModule { }

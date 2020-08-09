@@ -14,13 +14,15 @@ import { SharedModule } from './shared.module';
 import { SnackbarMessageComponent } from './_shared/snackbar-message/snackbar-message.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TrackerModule } from './tracker/tracker.module';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     SidenavComponent,
-    SnackbarMessageComponent
+    SnackbarMessageComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,

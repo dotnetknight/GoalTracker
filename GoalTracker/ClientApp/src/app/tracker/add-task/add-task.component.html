@@ -1,0 +1,108 @@
+<app-spinner *ngIf="isLoading"></app-spinner>
+
+<section fxLayoutAlign="center center">
+    <mat-card id="TaskCard">
+        <mat-card-title fxLayoutAlign="center">Add Task</mat-card-title>
+        <br>
+        <mat-card-subtitle fxLayoutAlign="center">Add task to accomplish daily
+        </mat-card-subtitle>
+        <br>
+        <mat-card-content fxLayoutAlign="center">
+            <!-- <form fxLayout="column" fxLayoutAlign="center center" fxLayoutAlign.xs="center center" fxLayoutGap="10px"
+                #f="ngForm" (ngSubmit)="addGoals(f)">
+
+                <mat-form-field>
+                    <input matInput placeholder="Date" name="currentDate" readonly
+                        value="{{today | date :'MMM dd, yyyy'}}">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input type="text" matInput placeholder="Title" ngModel name="goalTitle" required
+                        #goalTitleInput="ngModel">
+                    <mat-error *ngIf="goalTitleInput.hasError('required')">Title required</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input type="text" matInput placeholder="Priority" ngModel name="goalPriority" required
+                        #goalPriorityInput="ngModel">
+                    <mat-error *ngIf="goalPriorityInput.hasError('required')">Goal priority required</mat-error>
+                </mat-form-field>
+
+                <div id="goalTimeDiv" fxLayoutGap="10px">
+                    <mat-form-field style="Width:100px;">
+                        <input placeholder="From" readonly matInput atp-time-picker value="09:20" name="goalFromTime" />
+                    </mat-form-field>
+
+                    <mat-form-field style="Width:100px;">
+                        <input placeholder="To" readonly matInput atp-time-picker value="19:00" name="goalToTime" />
+                    </mat-form-field>
+                </div>
+
+                <button mat-mini-fab type="submit" class="addGoalBTN" (click)="addTask()" color="primary"
+                    [disabled]="f.invalid" title="Add Goal">
+                    <mat-icon>add_task</mat-icon>
+                </button>
+            </form> -->
+
+
+            <form name="addTaskForm" [formGroup]="addTaskForm" fxLayout="column" fxLayoutAlign="center center"
+                fxLayoutAlign.xs="center center" fxLayoutGap="10px">
+
+                <mat-form-field>
+                    <input matInput placeholder="Date" name="currentDate" readonly
+                        value="{{today | date :'MMM dd, yyyy'}}">
+                </mat-form-field>
+
+                <!-- <mat-form-field>
+                    <mat-label>Date</mat-label>
+                    <input matInput formControlName="date" readonly  value="{{today | date :'MMM dd, yyyy'}}">
+                    <mat-icon matSuffix>date</mat-icon>
+                </mat-form-field> -->
+
+
+                <mat-form-field>
+                    <mat-label>Title</mat-label>
+                    <input matInput formControlName="title" required>
+                    <mat-icon matSuffix class="secondary-text">title</mat-icon>
+                    <mat-error>
+                        Task title is required
+                    </mat-error>
+                </mat-form-field>
+
+
+                <mat-form-field>
+                    <mat-label>Priority</mat-label>
+                    <input matInput formControlName="priority" required>
+                    <mat-icon matSuffix class="secondary-text">low_priority</mat-icon>
+                    <mat-error>
+                        Task priority is required
+                    </mat-error>
+                </mat-form-field>
+
+                <div id="goalTimeDiv" fxLayoutGap="10px">
+                    <mat-form-field style="Width:100px;">
+                        <input placeholder="From" readonly matInput atp-time-picker formControlName="goalFromTime" />
+                    </mat-form-field>
+
+                    <mat-form-field style="Width:100px;">
+                        <input placeholder="To" readonly matInput atp-time-picker formControlName="goalToTime" />
+                    </mat-form-field>
+                </div>
+
+                <button mat-mini-fab type="submit" (click)="addTask()" color="accent" [disabled]="addTaskForm.invalid"
+                    title="Add Task">
+                    <mat-icon>add</mat-icon>
+                </button>
+
+
+            </form>
+
+
+
+
+
+
+
+        </mat-card-content>
+    </mat-card>
+</section>

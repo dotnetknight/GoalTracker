@@ -14,9 +14,8 @@ namespace GoalTracker.Web.Filters
             int statusCode = StatusCodes.Status500InternalServerError;
             string message = "Internal server error occurred";
 
-            if (baseException is BaseApiException)
+            if (baseException is BaseApiException baseApiException)
             {
-                BaseApiException baseApiException = ((BaseApiException)baseException);
                 statusCode = baseApiException.ResponseHttpStatusCode;
                 message = baseApiException.BackEndMessage;
             }
