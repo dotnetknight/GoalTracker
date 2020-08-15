@@ -34,17 +34,6 @@ export class SignUpComponent implements OnInit, OnDestroy {
       .subscribe(result => {
         this._snackBarService.openSnackBar([result.message], 4000, 'center', 'center', 'success');
         this._routingService.navigate('/user/login');
-      }, err => {
-        if (err.error.errors != undefined) {
-          this._snackBarService
-            .openSnackBar(err.error.errors
-              .map(element => element.message), 4000, 'center', 'center', 'error');
-        }
-
-        else {
-          this._snackBarService
-            .openSnackBar([err.error.message], 4000, 'center', 'center', 'error');
-        }
       });
   }
 

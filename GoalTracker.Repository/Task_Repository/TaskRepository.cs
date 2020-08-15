@@ -23,15 +23,10 @@ namespace GoalTracker.Repository.Task_Repository
             throw new NotImplementedException();
         }
 
-        public IEnumerable<T> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<IEnumerable<DailyTasks>> DailyTasksByEmail(string email)
         {
-            var res = await entities.ToListAsync();
-            return res.Where(h => h.Owner == email);
+            var dailyTasks = await DailyTasks();
+            return dailyTasks.Where(t => t.Owner == email);
         }
 
         public async Task Insert(T entity)
@@ -53,9 +48,20 @@ namespace GoalTracker.Repository.Task_Repository
             throw new NotImplementedException();
         }
 
-        public void Update(T entity)
+        public async Task UpdateTaskDone()
         {
-            throw new NotImplementedException();
+            await context.SaveChangesAsync();
+        }
+
+        public async Task<DailyTasks> TaskById(int taskId)
+        {
+            var dailyTasks = await DailyTasks();
+            return dailyTasks.Where(h => h.Id == taskId).FirstOrDefault();
+        }
+
+        private async Task<IEnumerable<T>> DailyTasks()
+        {
+            return await entities.ToListAsync();
         }
     }
 }

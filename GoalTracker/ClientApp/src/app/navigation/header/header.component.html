@@ -10,7 +10,7 @@
 
   <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
     <ul fxLayout fxLayoutGap="10px" class="navigation-items">
-      <a *ngIf="isAuth" routerLink="/user/profile">Hi, Nika!</a>
+      <a *ngIf="isAuth" routerLink="/user/profile">Hi, {{full_name}}!</a>
     </ul>
   </div>
 </mat-toolbar>

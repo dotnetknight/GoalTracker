@@ -46,18 +46,6 @@ export class AddTaskComponent implements OnInit, OnDestroy {
 
         this._snackBarService.openSnackBar([result.message], 4000, 'center', 'center', 'success');
         this._routingService.navigate('tracker/dailytasks');
-
-      }, err => {
-        if (err.error.errors != undefined) {
-          this._snackBarService
-            .openSnackBar(err.error.errors
-              .map(element => element.message), 4000, 'center', 'center', 'error');
-        }
-
-        else {
-          this._snackBarService
-            .openSnackBar([err.error.message], 4000, 'center', 'center', 'error');
-        }
       });
   }
 

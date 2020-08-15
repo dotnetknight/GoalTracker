@@ -10,6 +10,7 @@ import { UserService } from 'src/app/users/user.service';
 export class HeaderComponent implements OnInit, OnDestroy {
   isAuth = false;
   authSubscription: Subscription;
+  full_name: string;
   @Output() sidenavToggle = new EventEmitter<void>();
 
   constructor(private _userService: UserService) { }
@@ -19,6 +20,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe(authState => {
         this.isAuth = authState
       });
+
+    let token = this._userService.getDecodedToken();
+    this.full_name = token.full_name;
   }
 
   onToggleSidenav() {

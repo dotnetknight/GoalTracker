@@ -1,10 +1,9 @@
-import { BaseResponse } from 'src/app/_shared/responses/baseResponse';
-
-export interface TasksPerUserRespone extends BaseResponse {
+export interface DailyTasksRespone {
     dailyTasks: Task[]
 }
 
 export interface Task {
+    id: number,
     date: Date
     title: string,
     priority: number,

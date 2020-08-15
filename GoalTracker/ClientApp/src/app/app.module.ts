@@ -16,6 +16,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TrackerModule } from './tracker/tracker.module';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { JwtInterceptor } from './_shared/interceptors/jwt.interceptor';
+import { ErrorInterceptor } from './_shared/interceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,14 @@ import { JwtInterceptor } from './_shared/interceptors/jwt.interceptor';
     TrackerModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    {
+      provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true
+    },
+
+    {
+      provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true
+    },
+
   ],
 
   bootstrap: [AppComponent],

@@ -12,6 +12,7 @@ namespace GoalTracker.Domain.DailyTasks
             entityBuilder.Property(t => t.TaskEndTime).IsRequired();
             entityBuilder.Property(t => t.TaskStartTime).IsRequired();
             entityBuilder.Property(t => t.Owner).IsRequired();
+            entityBuilder.Property(t => t.Done);
         }
     }
 }

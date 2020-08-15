@@ -30,5 +30,11 @@ namespace GoalTracker.Web.Controllers
         {
             return Ok(await _mediator.Send(new DailyTasksPerUserQuery()));
         }
+
+        [HttpPost]
+        public async Task<IActionResult> TaskDone(TaskDoneCommand command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
     }
 }

@@ -1,8 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject, Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { SignUpResponse } from './responses/sign-up.response';
 import { LoginResponse } from './responses/login.response';
+import * as jwt_decode from "jwt-decode";
 
 @Injectable()
 export class UserService {
@@ -39,5 +40,12 @@ export class UserService {
 
     getToken() {
         return localStorage.getItem("jwt");
+    }
+
+    getDecodedToken() {
+        let token = localStorage.getItem("jwt");
+
+        if (token)
+            return jwt_decode(token);
     }
 }
