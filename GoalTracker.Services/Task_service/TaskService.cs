@@ -26,19 +26,22 @@ namespace GoalTracker.Services.Task_service
 
         public async Task<IEnumerable<DailyTasks>> DailyTasks(string email)
         {
-            return await _taskRepository.DailyTasksByEmail(email);
+            return await _taskRepository.DailyTasks(email);
         }
 
-        public async Task TaskDone(int taskId)
+        public async Task TaskDone(int taskId, bool done)
         {
-            var userTasks = await _taskRepository.DailyTasksByEmail(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Email).Value);
-
+            var userTasks = await _taskRepository.DailyTasks(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Email).Value);
+            
             if (userTasks == null)
-                throw new BaseApiException(System.Net.HttpStatusCode.NotFound, "No tasks found for this user");
+                throw new BaseApiException(System.Net.HttpStatusCode.NotFound, "For today, no tasks were found for this user.");
 
             var taskById = await _taskRepository.TaskById(taskId);
+            
+            if (taskById == null)
+                throw new BaseApiException(System.Net.HttpStatusCode.NotFound, "Task with this id not found.");
 
-            taskById.Done = true;
+            taskById.Done = done;
 
             await _taskRepository.UpdateTaskDone();
         }

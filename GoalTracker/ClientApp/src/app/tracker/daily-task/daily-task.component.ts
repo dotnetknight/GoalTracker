@@ -1,13 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { SelectionModel } from '@angular/cdk/collections';
 import { MatSort } from '@angular/material/sort';
 import { RoutingService } from 'src/app/_shared/services/routing.service';
 import { TrackerService } from '../tracker.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { SnackBarService } from 'src/app/_shared/services/snackbar.service';
-import { DailyTasksRespone, Task } from '../responses/tasks-per-user.response';
+import { Task } from '../responses/tasks-per-user.response';
 
 @Component({
   selector: 'app-daily-task',
@@ -16,14 +15,12 @@ import { DailyTasksRespone, Task } from '../responses/tasks-per-user.response';
 })
 
 export class DailyTaskComponent implements OnInit {
+  private _unsubscribeAll: Subject<any>;
   displayedColumns: string[] = ['done', 'title', 'time', 'priority'];
   dataSource: MatTableDataSource<Task>;
+  isLoading: boolean = true;
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  selection = new SelectionModel<DailyTasksRespone>(true, []);
-
-  private _unsubscribeAll: Subject<any>;
-  isLoading: boolean = true;
 
   constructor(
     private _routingService: RoutingService,
@@ -37,31 +34,15 @@ export class DailyTaskComponent implements OnInit {
       .dailyTasks()
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe(result => {
-
-        console.log(result);
-
         this.dataSource = new MatTableDataSource(result.dailyTasks);
         this.dataSource.sort = this.sort;
         this.isLoading = false;
       });
   }
 
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
-  }
-
-  masterToggle() {
-    this.isAllSelected() ?
-      this.selection.clear() :
-      this.dataSource.data.forEach(row => this.selection.select());
-  }
-
-
-  goalMarkedAsDone(row) {
+  goalMarkedAsDone(row, event) {
     this._trackerService
-      .taskDone(row)
+      .taskDone(row.id, event.checked)
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe(result => {
 

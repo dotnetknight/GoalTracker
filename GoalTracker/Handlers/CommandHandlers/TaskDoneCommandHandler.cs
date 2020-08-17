@@ -18,11 +18,11 @@ namespace GoalTracker.Web.Handlers.CommandHandlers
 
         public async Task<TaskDoneResponse> Handle(TaskDoneCommand request, CancellationToken cancellationToken)
         {
-            await _taskService.TaskDone(request.Id);
-           
+            await _taskService.TaskDone(request.Id, request.Done);
+
             return new TaskDoneResponse()
             {
-                Message = "Task Marked as done"
+                Message = request.Done != false ? "Task marked as done" : "Task marked as not done"
             };
         }
     }

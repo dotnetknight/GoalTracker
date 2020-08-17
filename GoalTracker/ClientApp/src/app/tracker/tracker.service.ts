@@ -18,7 +18,11 @@ export class TrackerService {
         return this.httpClient.get<DailyTasksRespone>('api/Task/DailyTasks');
     }
 
-    taskDone(taskId: number): Observable<TaskDoneResponse> {
-        return this.httpClient.post<TaskDoneResponse>('api/Task/TaskDone', taskId);
+    taskDone(id: number, done: boolean): Observable<TaskDoneResponse> {
+        return this.httpClient.post<TaskDoneResponse>('api/Task/TaskDone',
+            {
+                id: id,
+                done: done
+            });
     }
 }
