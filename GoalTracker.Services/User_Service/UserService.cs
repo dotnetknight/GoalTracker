@@ -23,11 +23,6 @@ namespace GoalTracker.Services.User_Service
             _configuration = configuration;
         }
 
-        public IEnumerable<User> GetUsers()
-        {
-            return userRepository.GetAll();
-        }
-
         public async Task SignUp(User user)
         {
             await userRepository.Insert(user);
@@ -82,6 +77,11 @@ namespace GoalTracker.Services.User_Service
                 hashBytes = algorithm.ComputeHash(bytes);
 
             return Convert.ToBase64String(hashBytes);
+        }
+
+        public async Task UpdateMyProfile()
+        {
+            await userRepository.UpdateMyProfile();
         }
     }
 }

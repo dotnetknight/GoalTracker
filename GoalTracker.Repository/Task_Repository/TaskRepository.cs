@@ -10,7 +10,7 @@ namespace GoalTracker.Repository.Task_Repository
     public class TaskRepository<T> : ITaskRepository<T> where T : DailyTasks
     {
         private readonly ApplicationContext context;
-        private DbSet<T> entities;
+        private readonly DbSet<T> entities;
 
         public TaskRepository(ApplicationContext context)
         {

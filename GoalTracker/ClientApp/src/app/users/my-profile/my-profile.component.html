@@ -1,0 +1,64 @@
+<app-spinner *ngIf="isLoading"></app-spinner>
+
+<section fxLayoutAlign="center center" *ngIf="!isLoading">
+    <mat-card id="ProfileForm">
+        <mat-card-title fxLayoutAlign="center">My profile</mat-card-title>
+
+        <br>
+
+        <mat-card-subtitle fxLayoutAlign="center">Every person has their own identity and beauty.</mat-card-subtitle>
+        <mat-card-content fxLayoutAlign="center">
+
+            <form name="profileForm" [formGroup]="profileForm" fxLayout="column" fxLayoutAlign="center center"
+                fxLayoutAlign.xs="center center" fxLayoutGap="10px">
+
+                <mat-form-field appearance="outline">
+                    <mat-label>First Name</mat-label>
+                    <input matInput formControlName="firstName" required>
+                    <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+                    <mat-error>
+                        Name is required
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput formControlName="lastName" required>
+                    <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+                    <mat-error>
+                        Last Name is required
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input readonly matInput formControlName="email">
+                    <mat-icon matSuffix class="secondary-text">mail</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" formControlName="password">
+                    <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Password (Confirm)</mat-label>
+                    <input matInput type="password" formControlName="passwordConfirm">
+                    <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
+                    <mat-error *ngIf="!profileForm.get('passwordConfirm').hasError('required') &&
+                                                 profileForm.get('passwordConfirm').hasError('passwordsNotMatching')">
+                        Passwords must match
+                    </mat-error>
+                </mat-form-field>
+
+                <button (click)="update()" mat-raised-button color="accent" aria-label="Update AN ACCOUNT"
+                    [disabled]="profileForm.invalid">
+                    Update
+                </button>
+
+            </form>
+
+        </mat-card-content>
+    </mat-card>
+</section>

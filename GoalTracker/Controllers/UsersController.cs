@@ -34,5 +34,17 @@ namespace GoalTracker.Web.Controllers
         {
             return await _mediator.Send(new UserByEmailQuery(email));
         }
+
+        [HttpGet]
+        public async Task<IActionResult> MyProfile()
+        {
+            return Ok(await _mediator.Send(new MyProfileQuery()));
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateMyProfile([FromBody] UpdateMyProfileCommand command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
     }
 }

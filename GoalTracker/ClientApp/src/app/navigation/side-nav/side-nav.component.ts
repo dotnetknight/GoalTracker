@@ -35,9 +35,6 @@ export class SidenavComponent implements OnInit, OnDestroy {
   }
 
   onLogout() {
-    localStorage.removeItem("jwt");
-    this._userService.chaseUserAuthenticationState(false);
-    this._routingService.navigate('/user/login');
-    this._snackbarService.openSnackBar(["You have successfully logged out."], 4000, 'center', 'center', 'success');
+    this._userService.logout();
   }
 }

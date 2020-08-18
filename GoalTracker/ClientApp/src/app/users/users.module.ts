@@ -4,11 +4,13 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { UserRoutingModule } from './user-routing.module';
 import { SharedModule } from '../shared.module';
 import { UserService } from './user.service';
+import { MyProfileComponent } from './my-profile/my-profile.component';
 
 @NgModule({
     declarations: [
         LoginComponent,
-        SignUpComponent
+        SignUpComponent,
+        MyProfileComponent
     ],
     imports: [
         SharedModule,

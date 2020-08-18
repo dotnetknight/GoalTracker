@@ -1,10 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn, ValidationErrors } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { UserService } from '../user.service';
 import { Subject } from 'rxjs';
 import { takeUntil, map } from "rxjs/operators";
 import { RoutingService } from 'src/app/_shared/services/routing.service';
 import { SnackBarService } from 'src/app/_shared/services/snackbar.service';
+import { confirmPasswordValidator } from '../validators/confirm-password.validator';
 
 @Component({
   selector: 'app-sign-up',
@@ -70,25 +71,3 @@ export class SignUpComponent implements OnInit, OnDestroy {
     this._unsubscribeAll.complete();
   }
 }
-
-export const confirmPasswordValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-
-  if (!control.parent || !control) {
-    return null;
-  }
-
-  const password = control.parent.get('password');
-  const passwordConfirm = control.parent.get('passwordConfirm');
-
-  if (!password || !passwordConfirm)
-    return null;
-
-  if (passwordConfirm.value === '')
-    return null;
-
-
-  if (password.value === passwordConfirm.value)
-    return null;
-
-  return { 'passwordsNotMatching': true };
-};
