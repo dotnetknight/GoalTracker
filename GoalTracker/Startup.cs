@@ -19,6 +19,8 @@ using GoalTracker.Models.Exceptions;
 using GoalTracker.Web.Filters;
 using GoalTracker.Repository.Task_Repository;
 using GoalTracker.Services.Task_service;
+using GoalTracker.Repository.Journal_Repository;
+using GoalTracker.Services.Journal_Service;
 
 namespace GoalTracker
 {
@@ -51,9 +53,11 @@ namespace GoalTracker
 
             services.AddScoped(typeof(IUserRepository<>), typeof(UserRepository<>));
             services.AddScoped(typeof(ITaskRepository<>), typeof(TaskRepository<>));
+            services.AddScoped(typeof(IJournalRepository<>), typeof(JournalRepository<>));
 
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ITaskService, TaskService>();
+            services.AddTransient<IJournalService, JournalService>();
 
             services.AddMediatR(typeof(Startup));
 

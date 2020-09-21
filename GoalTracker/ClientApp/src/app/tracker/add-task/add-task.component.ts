@@ -37,8 +37,6 @@ export class AddTaskComponent implements OnInit, OnDestroy {
   }
 
   addTask() {
-    console.log(this.addTaskForm.value);
-
     this._trackerService
       .addTask(this.addTaskForm.value)
       .pipe(takeUntil(this._unsubscribeAll))
