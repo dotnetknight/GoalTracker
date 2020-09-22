@@ -30,7 +30,8 @@ namespace GoalTracker.Web.Handlers.CommandHandlers
             {
                 Owner = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Email).Value,
                 Text = request.Text,
-                Title = request.Title
+                Title = request.Title,
+                AddedDate = DateTime.Now
             };
 
             await _journalService.AddJournal(journal);
